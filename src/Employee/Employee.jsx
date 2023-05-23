@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './Employee.css';
 
-
 function Employee({employees, selected}) {
 
-    const [employeeid, setEmployeeid] = useState(1);
+    const [employeeid, setEmployeeid] = useState();
 
     useEffect(() => {
         selected(employeeid);

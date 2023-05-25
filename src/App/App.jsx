@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Employee employees={employees} selected={returnSelected}/>
+        <Employee employees={employees} set_Selected={returnSelected}/>
         <h1>Valor: {selected}</h1>
       </header>
     </div>

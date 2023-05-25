@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import './Employee.css';
 
-function Employee({employees, selected}) {
+function Employee({employees, set_Selected}) {
 
     const [employeeid, setEmployeeid] = useState();
 
     useEffect(() => {
-        selected(employeeid);
-    })
+        set_Selected(employeeid);
+    }, [employeeid, set_Selected]);
 
     return (
         <div>
@@ -15,7 +15,7 @@ function Employee({employees, selected}) {
                 <h6>Funcionários:</h6>
             </div>
             <div className="div-select">
-                <select value={employeeid} onChange={e=>setEmployeeid(e.target.value)}>
+                <select onChange={e=>setEmployeeid(e.target.value)}>
                     { employees.map((employee,idx)=><option key={idx} value={employee.id}>{employee.id} - {employee.name}</option>)}
                 </select>
             </div>

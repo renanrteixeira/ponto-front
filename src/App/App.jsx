@@ -1,32 +1,56 @@
-import './App.css';
-import Employee from '../Employee/Employee';
-import { useState } from 'react';
+import "./App.css";
+import Employee from "../Employee/Employee";
+import { useState } from "react";
+import { Button, Container, Paper, TextField } from "@mui/material";
 
 function App() {
-  const employees = [
-    {id: 1, name: "teste1"},
-    {id: 2, name: "teste2"},
-    {id: 3, name: "teste3"},
-    {id: 4, name: "teste4"},
-    {id: 5, name: "teste5"},
-    {id: 6, name: "teste6"},
-    {id: 7, name: "teste7"},
-    {id: 8, name: "teste8"},
-  ]
+  const [employees, setEmployees] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [id, setId] = useState(null);
+  const [nome, setNome] = useState(null);
 
-  function returnSelected(id){
+  function returnSelected(id) {
     setSelected(id);
   }
-  
-  const [selected, setSelected] = useState('');
-  
+
+  function additem(id, name) {
+    const obj = { id: id, name: name };
+    setEmployees([...employees, obj]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Employee employees={employees} set_Selected={returnSelected}/>
-        <h1>Valor: {selected}</h1>
-      </header>
-    </div>
+    <Container maxWidth="xs" style={{ marginTop: "1em" }}>
+      <Paper style={{ padding: "1em" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <TextField
+            id="outlined-basic"
+            label="ID"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setId(e.target.value)}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Nome"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <Button
+            variant="contained"
+            onClick={() => {
+              additem(id, nome);
+            }}
+          >
+            Add
+          </Button>
+        </div>
+        <div>
+          <Employee employees={employees} set_Selected={returnSelected} />
+          <h1>Valor: {selected}</h1>
+        </div>
+      </Paper>
+    </Container>
   );
 }
 

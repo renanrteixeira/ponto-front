@@ -30,7 +30,9 @@ function Employee({ employees, set_Selected }) {
             onChange={handleChange}
           >
             {employees.map((employee, idx) => (
-              <MenuItem value={employee.id}>{employee.name}</MenuItem>
+              <MenuItem key={idx} value={employee.id}>
+                {employee.name}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
